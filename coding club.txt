@@ -1,0 +1,250 @@
+Create a dictionary, that displays each character in string str1 as the key and its count as the value.
+
+str1 = input()
+frequency={}
+for i in str1:
+    if i not in frequency:
+        frequency[i]=0
+    else:
+        frequency[i]+=1
+sol: and i!=''  (near if not condition) and frequency[i]=1 
+----------------------------------------------------------------------------------------------------------------------------
+rectify the errors so that the program could print the output successfully 
+the program must accept an character s if it is b or B then it should print BOY as output else GIRL as output 
+s=input()
+if s=='b':
+	print('BOY')
+else:
+	print('GIRL')
+
+solution: s.lower()
+-------------------------------------------------------------------------------------------------------------------------------
+the function compressString(char *str) accept a string str as the input. The function is supposed to print the compressed string as shown in the Example Input/Output Section.
+
+The function compiles fine but fails to print the desired result.
+
+Your task is to fix the program so that it passes all test cases.
+
+Example Input/Output:
+Input:
+aaabbcccc
+
+Ouput:
+a3b2c4
+
+
+void compressString(char *str)
+{
+    int count, len=strlen(str),i=0;
+    while(i<len)
+    {
+        int j=i+1;
+        count=1;
+        while(j<len)
+        {
+            if(str[i]==str[j]){
+                count++;
+            }
+            else{
+                break;
+            }
+            j+=1;
+        }
+        printf("%c%d", str[i], count);
+        i=count;
+    }
+}
+soln:i+=count
+---------------------------------------------------------------------------------------------------------
+The function firstRepeatCharacter(char *str, int index) accepts a string and index as the input. The function prints the first repeating character in the given string.
+
+The function compiles successfully but fails to print the desired result due to logical errors.
+
+Your task is to debug the program to pass all the test cases.
+void firstRepeatCharacter(char *str, int index){
+    int characterCount[128] = {0};
+    for(index=0;index<strlen(str);index++){
+        if(characterCount[str[index]] == 1){
+            printf("%c", str[index]);
+            break;
+        }
+}
+
+soln: characterCount[str[index]]++; after if 
+-------------------------------------------------------------------------------------------------------------------
+
+the program must accept n integers as the input the program must print the sum of the digits of the largest integer among the n integers as the output 
+input :
+  6 
+  98 74 85 23 58 21
+output :
+17 
+explanation :
+the largest integer is 98 
+so 9+8=17 
+
+
+n=int(input())
+li=list(map(int,input().split()))
+maximum=max(li)
+summ=0
+for i in maximum:
+    summ+=int(i)
+print(summ)
+
+soln: maximum=str(max(li))
+--------------------------------------------------------------------------------------------------------------------------------
+the program must accept an integer n as the input. the program must print the absolute difference between the first two digits and the last two digits in n as output
+input:
+21546
+output:
+25 
+explanation:
+the first two digit in 21546 is 21
+the last two digit in 21546 is 46 
+the absolute difference of 21 and 46 is 25
+
+
+n=input()
+first=n[:2];last=n[-2:]
+print(first-last)
+
+soln: print(abs(int(first)-int(last)))
+	---------------------------------------------------------------------------------------------------------------------------------------
+
+the program must accept a list of strings as input and sort the list based on the length of string
+li=[val for val in input().split()]
+print(sorted(li))
+
+soln:print(*sorted(li,key= lambda x:len(x)))
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+the function printNt02N(int N) accepts N as input. The function prints from N+1 to 2N
+
+#include<stdio.h>
+#include<stdlib.h>
+void printNto2N(int N){
+    int ctr=N+1;
+    while(ctr<=2N){
+        printf("%d",ctr);
+        ctr++;
+    }
+}
+int main(){
+    int n;
+    scanf("%d",&n);
+    printNto2N(n);
+}
+
+soln:while(ctr<=2*N), printf("%d ",ctr);
+---------------------------------------------------------------------------------------------------------------------------------------------------
+rectify the errors so that the program can Sort the string alphabetically, from z to a
+letters = input()
+print(sorted(letters))
+----------------------------------------------------------------------------------------------------------------------------------------------------
+the program must accept n integers and join the integers together and return the integer as output 
+sample input:
+1 2 3 4 5
+output:
+12345
+
+n=list(map(int,input().split()))
+print(*n)
+soln=print(*n,sep="")
+*************************************************************end of debugging****************************************************************
+---------------------------------------------------------------------------------------------------------------------------------------------------
+A bracket is considered to be any one of the following characters: (, ), {, }, [, or ].
+
+Two brackets are considered to be a matched pair if the an opening bracket (i.e., (, [, or {) occurs to the left of a closing bracket (i.e., ), ], or }) of the exact same type. There are three types of matched pairs of brackets: [], {}, and ().
+
+A matching pair of brackets is not balanced if the set of brackets it encloses are not matched. For example, {[(])} is not balanced because the contents in between { and } are not balanced. The pair of square brackets encloses a single, unbalanced opening bracket, (, and the pair of parentheses encloses a single, unbalanced closing square bracket, ].
+Given a string of brackets, determine whether each sequence of brackets is balanced. If a string is balanced, return YES. Otherwise, return NO.
+
+
+s=input().strip()
+pairs={"(":")","{":"}","[":"]"}
+stack=[]
+for i in s:
+    if i in "([{":
+        stack.append(i)
+    else:
+        if stack==[]:
+            print("no")
+            exit()
+        closed=i
+        opened=stack.pop()
+        if pairs[opened]!=closed:
+            print("no")
+            exit()
+if stack==[]:
+    print("yes")
+else:
+    print("no")
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+the program must accept a string S as the input. The string s contains only parantheses, where each paranthesis '(' has a matching close paranthesis ')'. The program must split the string s into as many substrings as possible, where the parantheses in each substring must be balanced.
+input:
+()()
+output:
+()
+()
+input 2:
+((()()))()
+output:
+((()()))
+()
+
+n=input();stack=[]
+for i in n:
+	print(i,end='')
+	if i=='(':
+		stack.append(i)
+	else:
+		stack.pop()
+		if not stack:
+			print()
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+sort odd integers :
+the program must accept an integer matrix of size r*r then the program must sort the odd integers in the matrix across all rows. finally the program must print the revised matrix.
+input:
+3 4
+90 5 85 29
+53 9 17 88
+16 99 41 21
+output:
+90 5 9 17
+21 29 41 88
+16 53 85 99
+input 2:
+5 7
+644 74 347 76 782 172 783
+739 281 601 600 30 431 608
+437 778 199 396 253 352 687
+799 648 101 583 542 42 997
+58 667 581 597 499 579 933
+output2:
+644 74 101 76 782 172 199
+253 281 347 600 30 431 608
+437 778 499 396 579 352 581
+583 648 597 601 542 42 667
+58 687 739 783 799 933 997
+
+r,c=map(int,input().split())
+matrix=[[int(val) for val in input().split()] for row in range(r)]
+oddint=[]
+for row in range(r):
+    for col in range(c):
+        if matrix[row][col]%2!=0:
+            oddint.append(matrix[row][col])
+oddintk=sorted(oddint)
+ctr=0
+for row in range(r):
+    for col in range(c):
+        if matrix[row][col] % 2 != 0:
+            matrix[row][col]=oddintk[ctr]
+            ctr+=1
+for i in matrix:
+    print(*i)
+--------------------------------------------------------------------------------------------------------------------------------------------------------
